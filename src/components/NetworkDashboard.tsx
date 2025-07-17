@@ -18,7 +18,8 @@ import {
   BarChart3,
   Network
 } from 'lucide-react';
-import heroImage from '@/assets/hero-network.jpg';
+import { Link } from 'react-router-dom';
+import heroImage from '@/assets/north-america-network.jpg';
 
 const NetworkDashboard = () => {
   return (
@@ -54,11 +55,11 @@ const NetworkDashboard = () => {
                 for next-generation telecom operations.
               </p>
               <div className="flex space-x-4">
-                <Button variant="enterprise" size="lg">
-                  Deploy Agent
+                <Button variant="enterprise" size="lg" asChild>
+                  <Link to="/agent-builder">Deploy Agent</Link>
                 </Button>
-                <Button variant="outline" size="lg">
-                  View Models
+                <Button variant="outline" size="lg" asChild>
+                  <Link to="/model-library">View Models</Link>
                 </Button>
               </div>
             </div>
@@ -157,59 +158,65 @@ const NetworkDashboard = () => {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="p-4 rounded-lg bg-gradient-subtle border">
                       <div className="flex items-center justify-between mb-2">
-                        <h4 className="font-medium">Performance Guardian</h4>
+                        <h4 className="font-medium">DWDM Performance Monitor</h4>
                         <Badge variant="success">Active</Badge>
                       </div>
                       <p className="text-sm text-muted-foreground mb-3">
-                        Optimizing RAN performance across 127 base stations
+                        Monitoring 40+ wavelength channels across metro ring
                       </p>
                       <div className="flex justify-between text-xs">
-                        <span>Tasks: 24 completed</span>
-                        <span>Uptime: 99.2%</span>
+                        <span>Tasks: 156 completed</span>
+                        <span>Impact: $1.2M protected</span>
                       </div>
                     </div>
 
                     <div className="p-4 rounded-lg bg-gradient-subtle border">
                       <div className="flex items-center justify-between mb-2">
-                        <h4 className="font-medium">Revenue Protector</h4>
+                        <h4 className="font-medium">Fiber Health Guardian</h4>
+                        <Badge variant="success">Active</Badge>
+                      </div>
+                      <p className="text-sm text-muted-foreground mb-3">
+                        Predictive maintenance for 2,847 km of fiber routes
+                      </p>
+                      <div className="flex justify-between text-xs">
+                        <span>Tasks: 89 completed</span>
+                        <span>Prevented: 12 outages</span>
+                      </div>
+                    </div>
+
+                    <div className="p-4 rounded-lg bg-gradient-subtle border">
+                      <div className="flex items-center justify-between mb-2">
+                        <h4 className="font-medium">Wavelength Optimizer</h4>
                         <Badge variant="info">Processing</Badge>
                       </div>
                       <p className="text-sm text-muted-foreground mb-3">
-                        Analyzing customer churn patterns for tier-1 clients
+                        Real-time wavelength routing optimization
                       </p>
                       <div className="flex justify-between text-xs">
-                        <span>Tasks: 18 completed</span>
-                        <span>Impact: $850K saved</span>
+                        <span>Tasks: 203 completed</span>
+                        <span>Efficiency: +23%</span>
                       </div>
                     </div>
 
                     <div className="p-4 rounded-lg bg-gradient-subtle border">
                       <div className="flex items-center justify-between mb-2">
-                        <h4 className="font-medium">Capacity Planner</h4>
-                        <Badge variant="warning">Attention</Badge>
-                      </div>
-                      <p className="text-sm text-muted-foreground mb-3">
-                        Predicting bandwidth requirements for Q4 traffic surge
-                      </p>
-                      <div className="flex justify-between text-xs">
-                        <span>Tasks: 12 pending</span>
-                        <span>Confidence: 87%</span>
-                      </div>
-                    </div>
-
-                    <div className="p-4 rounded-lg bg-gradient-subtle border">
-                      <div className="flex items-center justify-between mb-2">
-                        <h4 className="font-medium">Fault Predictor</h4>
+                        <h4 className="font-medium">OSNR Signal Analyzer</h4>
                         <Badge variant="success">Active</Badge>
                       </div>
                       <p className="text-sm text-muted-foreground mb-3">
-                        Monitoring equipment health across metro area
+                        Continuous OSNR monitoring and amplifier optimization
                       </p>
                       <div className="flex justify-between text-xs">
-                        <span>Tasks: 31 completed</span>
-                        <span>Prevented: 5 outages</span>
+                        <span>Tasks: 134 completed</span>
+                        <span>OSNR: +15dB improved</span>
                       </div>
                     </div>
+                  </div>
+                  
+                  <div className="mt-4 text-center">
+                    <Button variant="outline" asChild>
+                      <Link to="/agent-management">View All Agents</Link>
+                    </Button>
                   </div>
                 </CardContent>
               </Card>
@@ -267,20 +274,26 @@ const NetworkDashboard = () => {
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="flex items-center justify-between">
+                    <span className="text-sm">OSNR Prediction</span>
+                    <Badge variant="success">96.8%</Badge>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm">Wavelength Routing</span>
+                    <Badge variant="success">98.1%</Badge>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm">Fiber Failure Prediction</span>
+                    <Badge variant="success">94.2%</Badge>
+                  </div>
+                  <div className="flex items-center justify-between">
                     <span className="text-sm">RAN Optimization</span>
-                    <Badge variant="success">97.2%</Badge>
+                    <Badge variant="info">93.7%</Badge>
                   </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm">Traffic Engineering</span>
-                    <Badge variant="success">94.8%</Badge>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm">Fault Prediction</span>
-                    <Badge variant="info">91.3%</Badge>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm">Capacity Planning</span>
-                    <Badge variant="warning">88.7%</Badge>
+                  
+                  <div className="mt-4 text-center">
+                    <Button variant="outline" size="sm" asChild>
+                      <Link to="/model-library">View Model Library</Link>
+                    </Button>
                   </div>
                 </CardContent>
               </Card>
