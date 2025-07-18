@@ -8,6 +8,9 @@ import AgentBuilder from "./pages/AgentBuilder";
 import AgentManagement from "./pages/AgentManagement";
 import ModelLibrary from "./pages/ModelLibrary";
 import BusinessIntelligence from "./pages/BusinessIntelligence";
+import LLMConfiguration from "./pages/LLMConfiguration";
+import WorkflowIntegrations from "./pages/WorkflowIntegrations";
+import BuiltInIntegrations from "./pages/BuiltInIntegrations";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -35,6 +38,9 @@ const App = () => {
             <Route path="/agent-management" element={<AgentManagement />} />
             <Route path="/model-library" element={<ModelLibrary />} />
             <Route path="/business-intelligence" element={<BusinessIntelligence />} />
+            <Route path="/llm-configuration" element={<LLMConfiguration />} />
+            <Route path="/workflow-integrations" element={<WorkflowIntegrations />} />
+            <Route path="/built-in-integrations" element={<BuiltInIntegrations />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
