@@ -1,0 +1,72 @@
+version: '3.8'
+
+services:
+  # Main application
+  dual-intelligence-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: dual-intelligence-network-operator
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    environment:
+      - NODE_ENV=production
+      - TZ=UTC
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    labels:
+      - "com.docker.compose.service=dual-intelligence-app"
+      - "description=Dual Intelligence Autonomous Network Operator"
+    networks:
+      - app-network
+
+  # Optional: Redis for caching (if needed)
+  redis:
+    image: redis:7-alpine
+    container_name: dual-intelligence-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    command: redis-server --appendonly yes --requirepass ${REDIS_PASSWORD:-defaultpassword}
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    networks:
+      - app-network
+
+  # Optional: Nginx reverse proxy (for production with SSL)
+  nginx-proxy:
+    image: nginx:alpine
+    container_name: dual-intelligence-proxy
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx-proxy.conf:/etc/nginx/nginx.conf:ro
+      - ./ssl:/etc/nginx/ssl:ro
+    depends_on:
+      - dual-intelligence-app
+    networks:
+      - app-network
+    profiles:
+      - proxy
+
+networks:
+  app-network:
+    driver: bridge
+    name: dual-intelligence-network
+
+volumes:
+  redis-data:
+    driver: local
+    name: dual-intelligence-redis-data
